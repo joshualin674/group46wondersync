@@ -20,9 +20,66 @@
     </nav>
   </header>
   <main>
-    <h1>Design & Architecture</h1>
-    <p>Delve into the architectural design and implementation of design patterns underpinning our project.</p>
-    <img src="uml-diagram.png" alt="UML Diagram Example">
+    <div class="content">
+      <h1>Design & Architecture</h1>
+      <p>
+        The architecture of our web application follows a clean, modular structure designed to ensure maintainability, scalability, and efficient data handling. We used several design patterns and architectural principles helping the development process and enhancing the user experience.
+      </p>
+      <h2>Architectural Overview</h2>
+      <p>
+        Our architecture focuses on the Model-View-ViewModel (MVVM) design pattern, which helps separate the application's data management, business logic, and user interface. This pattern ensures that the data layer (Model) is decoupled from the UI layer (View) and allows better testability and maintainability.
+      </p>
+      <h3>Model</h3>
+      <p>
+        This layer consists of all the application’s data-related components, including entities and data handling logic. It interacts with external services like Firebase to fetch and store data. For example, classes like <code>Accommodation</code> and <code>TravelLog</code> represent data entities, while <code>FirebaseSingleton</code> is responsible for interacting with Firebase.
+      </p>
+      <h3>View</h3>
+      <p>
+        The View layer is responsible for presenting the data to the user. It consists of the front-end components (HTML, CSS, JavaScript) that render UI elements and handle user interactions.
+      </p>
+      <h3>ViewModel</h3>
+      <p>
+        This layer acts as a bridge between the Model and the View, handling the application logic and presenting data in a format that is easy for the View to consume. The ViewModel exposes LiveData objects, such as accommodations and toastMessage, that the View can observe to display the appropriate UI state.
+      </p>
+      <h2>Key Design Patterns Examples</h2>
+      <ul>
+        <li><strong>Singleton Pattern:</strong> The <code>FirebaseSingleton</code> class ensures a single instance of Firebase connections throughout the application.</li>
+        <li><strong>Observer Pattern:</strong> LiveData objects like accommodations notify the View of changes, automatically updating the UI.</li>
+        <li><strong>Strategy Pattern:</strong> Sorting accommodations by dates is handled using a strategy approach in <code>AccommodationsViewModel</code>.</li>
+      </ul>
+      <h2>UML Diagrams</h2>
+      <p>To provide a clear visual representation of the application's design, we have included the following UML diagrams:</p>
+      
+      <h3>1. Design Class Diagram (DCD)</h3>
+      <p>
+        The Design Class Diagram illustrates the relationships between the core classes in our project. It includes the Accommodation, TravelLog, FirebaseSingleton, AccommodationsViewModel, DestinationsViewModel, and related components.
+      </p>
+      <ul>
+        <li><strong>FirebaseSingleton:</strong> Manages the Firebase connection and ensures there is a single point of access to Firestore and FirebaseAuth.</li>
+        <li><strong>Accommodation & TravelLog:</strong> Data models representing an accommodation entry and travel log, respectively.</li>
+        <li><strong>AccommodationsViewModel & DestinationsViewModel:</strong> Responsible for fetching and managing data for the View, including handling business logic such as validation, sorting, and adding new data.</li>
+      </ul>
+      <div class="diagram">
+        <img src="DCD Sprint 3.png" alt="Design Class Diagram Placeholder">
+      </div>
+
+
+      <h3>2. Sequence Diagram (SD)</h3>
+      <p>
+        The Sequence Diagram illustrates the interactions between the DiningFragment, DiningFormFragment, and DiningDatabase during the dining reservation process. For example, when adding a new reservation:
+      </p>
+      <ol>
+        <li>The user clicks the "Add" button in the DiningFragment, opening the DiningFormFragment.</li>
+        <li>The user enters reservation details (date and time) in the DiningFormFragment and submits them.</li>
+        <li>The DiningFragment validates the data and sends it to the DiningDatabase.</li>
+        <li>The DiningDatabase registers the new reservation and confirms the update.</li>
+        <li>The DiningFragment gets the updated reservations, sorts them by date, and then displays the results to the user.</li>
+      </ol>
+      <p>This sequence ensures that user interactions are efficiently processed, and the View reflects the latest data state.</p>
+      <div class="diagram">
+        <img src="SD Sprint 3.png" alt="Sequence Diagram Placeholder">
+      </div>
+    </div>
   </main>
 </body>
 </html>
